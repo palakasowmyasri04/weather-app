@@ -1,10 +1,8 @@
 import requests
-from datetime import datetime
 from config import API_KEY, BASE_URL
 
-def main():
-    city = input("Enter city name: ")
 
+def get_weather(city):
     params = {
         "q": city,
         "appid": API_KEY,
@@ -15,15 +13,28 @@ def main():
 
     if response.status_code == 200:
         data = response.json()
-        now = datetime.now().strftime("%d %b %Y %H:%M")
+        return {
+            "city": data["name"],
+            "temperature": data["main"]["temp"],
+            "condition": data["weather"][0]["description"],
+            "humidity": data["main"]["humidity"]
+        }
+    else:
+        return None
 
-        print("\nCity:", data["name"])
-        print("Date & Time:", now)
-        print("Temperature:", data["main"]["temp"], "°C")
-        print("Condition:", data["weather"][0]["description"])
-        print("Humidity:", data["main"]["humidity"], "%")
+
+def main():
+    city = input("Enter city name: ")
+    weather = get_weather(city)
+
+    if weather:
+        print(f"\nWeather in {weather['city']}")
+        print(f"Temperature: {weather['temperature']}°C")
+        print(f"Condition: {weather['condition'].title()}")
+        print(f"Humidity: {weather['humidity']}%")
     else:
         print("City not found or API error.")
+
 
 if __name__ == "__main__":
     main()
