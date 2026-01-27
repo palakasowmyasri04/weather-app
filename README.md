@@ -22,3 +22,7 @@ A simple Python application that fetches real-time weather data using a public A
 - API integration
 - JSON handling
 - Writing clean Python code
+
+## 📸 Sample Output
+
+![Weather App Output](output weeather app.jpeg)
