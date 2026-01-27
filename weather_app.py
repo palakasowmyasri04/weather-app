@@ -1,6 +1,7 @@
-from datetime import datetime
 import requests
+from datetime import datetime
 from config import API_KEY, BASE_URL
+
 
 def get_weather(city):
     params = {
@@ -25,17 +26,22 @@ def get_weather(city):
 
 def main():
     city = input("Enter city name: ")
+
     weather = get_weather(city)
 
     if weather:
-        current_time = datetime.now().strftime("%d %b %Y, %H:%M")
-        print(f"\nWeather in {weather['city']} ({current_time})")
-        print(f"Temperature: {weather['temperature']}°C")
-        print(f"Condition: {weather['condition'].title()}")
-        print(f"Humidity: {weather['humidity']}%")
+        current_time = datetime.now().strftime("%d %b %Y, %I:%M %p")
+
+        print("\n🌍 Weather Report")
+        print("-" * 25)
+        print(f"📍 City       : {weather['city']}")
+        print(f"📅 Date & Time: {current_time}")
+        print(f"🌡 Temperature: {weather['temperature']}°C")
+        print(f"☁ Condition  : {weather['condition'].title()}")
+        print(f"💧 Humidity   : {weather['humidity']}%")
 
     else:
-        print("City not found or API error.")
+        print("❌ City not found or API error.")
 
 
 if __name__ == "__main__":
