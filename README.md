@@ -25,4 +25,4 @@ A simple Python application that fetches real-time weather data using a public A
 
 ## 📸 Sample Output
 
-![Weather App Output](output weeather app.jpeg)
+![Weather App Output](output weather app.jpeg)
